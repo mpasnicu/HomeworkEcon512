@@ -1,0 +1,28 @@
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mpower')" style="font-weight:bold"> ^ </a>
+One argument must be a square matrix and the other must be a scalar. Use POWER (.^) for elementwise power.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('homework1', '/Users/mihai/Desktop/Second year/Empirical Methods/homework1.m', 7)" style="font-weight:bold">homework1</a> (<a href="matlab: opentoline('/Users/mihai/Desktop/Second year/Empirical Methods/homework1.m',7,0)">line 7</a>)
+Y_2 = - 2 + 0.5 * X ^ 2;
+} 
+homework1
+homework1
+{To use 'removerows', the following product must be licensed, installed, and enabled:
+  <a href="matlab:matlab.internal.language.introspective.showAddon('NN', 'removerows');">Neural Network Toolbox</a>
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('homework1', '/Users/mihai/Desktop/Second_year/Empirical_Methods/homework1/homework1.m', 26)" style="font-weight:bold">homework1</a> (<a href="matlab: opentoline('/Users/mihai/Desktop/Second_year/Empirical_Methods/homework1/homework1.m',26,0)">line 26</a>)
+[F, ps] = removerows(A, 'ind', [2 3]);
+} 
+matlab.internal.language.introspective.showAddon('NN', 'removerows');
+{Undefined function or variable 'kern'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('homework1', '/Users/mihai/Desktop/Second_year/Empirical_Methods/homework1/homework1.m', 31)" style="font-weight:bold">homework1</a> (<a href="matlab: opentoline('/Users/mihai/Desktop/Second_year/Empirical_Methods/homework1/homework1.m',31,0)">line 31</a>)
+B = kern(A, I);
+} 
+homework1
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ctranspose')" style="font-weight:bold"> ' </a>
+Too many output arguments.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('homework1', '/Users/mihai/Desktop/Second_year/Empirical_Methods/homework1/homework1.m', 32)" style="font-weight:bold">homework1</a> (<a href="matlab: opentoline('/Users/mihai/Desktop/Second_year/Empirical_Methods/homework1/homework1.m',32,0)">line 32</a>)
+[F, ps] = (removerows(removerows(A, 'ind', [2])', 'ind', 3))';
+} 
+homework1

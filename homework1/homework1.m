@@ -54,6 +54,8 @@ AC = AA >= 10;
 %% sixth problem 
 
 filename = 'datahw1.csv';
+
+% csvread replaces NaNs with zeros creating a little bias in eatimates
 M = csvread(filename);
 
 % extract the production function from M
@@ -67,6 +69,7 @@ M(:,1) = 1;
 
 [beta, sigma, EE, CovB, logL] = mvregress(M, P, 'algorithm', 'cwls');
 std = diag(CovB) .^ 0.5;
-
+% It's better to either use your own written estimation rotunes or use
+% econometrics toolbox in matlab
 
 diary off

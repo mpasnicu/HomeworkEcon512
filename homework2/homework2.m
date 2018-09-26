@@ -12,7 +12,7 @@ fprintf('Demand for A is %.2f and Demand for B is %.2f\n', demand(v, p), demand(
 %% problem 2
 % keep v_a = v_b = 2
 
-p = [1 5];
+p = [1 1];
 f = @(x) [x(1) - 1/( 1 - demand(v, x)); x(2) - 1/(1 - demand(fliplr(v), fliplr(x)))];
 
 
@@ -26,7 +26,7 @@ toc
 
 
 pold = [1 1];
-pnew = [2 5];
+pnew = [2 2];
 
 tol = 1e-8;
 maxit = 100;
@@ -59,3 +59,46 @@ for iter =1:maxit
     end
 end
 toc
+
+%% problem 4
+
+p_4 = [1 1];
+
+tol = 1e-8;
+maxit = 100;
+
+tic
+for iter =1:maxit
+    fprintf('iter %d: p(1) = %f, p(2) = %f\n', iter, p_4(1), p_4(2));
+    faVal = f(p_4);
+    fbVal = f(fliplr(p_4));
+    
+    if abs(max(faVal,fbVal)) < tol
+        break
+    else
+    
+    p_4(1) = 1/(1 - demand(v, p_4));
+    
+    p_4(2) = 1/(1 - demand(fliplr(v), fliplr(p_4)));
+  
+    end
+end
+toc
+
+
+%%  problem 5
+% we are going to use broyden for this
+
+va = 2;
+vb = 0 : 0.2 :3;
+p_5 = ones(2, size(vb, 2));
+
+for i = 1 : size((vb), 2)
+    v = [va, vb(i)];
+    f = @(x) [x(1) - 1/( 1 - demand(v, x)); x(2) - 1/(1 - demand(fliplr(v), fliplr(x)))];
+    p_5(:, i) = broyden(f, p_5(:, i)');
+end
+
+plot(vb,p_5(1,:),vb,p_5(2,:));
+xlabel('Valuation of good B'); ylabel('Equilibrium Prices');
+

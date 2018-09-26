@@ -12,7 +12,7 @@ fprintf('Demand for A is %.2f and Demand for B is %.2f\n', demand(v, p), demand(
 %% problem 2
 % keep v_a = v_b = 2
 
-p = [1 5];
+p = [1 1];
 f = @(x) [x(1) - 1/( 1 - demand(v, x)); x(2) - 1/(1 - demand(fliplr(v), fliplr(x)))];
 
 
@@ -26,40 +26,76 @@ toc
 
 
 pold = [1 1];
-pnew = [2 3];
+pnew = [5 2];
 
 tol = 1e-8;
 maxit = 100;
 
 tic
 for iter =1:maxit
-    
+    fprintf('iter %d: p(1) = %f, p(2) = %f\n', iter, pnew(1), pnew(2));
     faVal = f(pnew);
-    fbVal = f(fliplr(new));
+    fbVal = f(fliplr(pnew));
     
     if abs(max(faVal,fbVal)) < tol
         break
     else
     
-    g=@(pa) f(pa, pnew(2));
-    fold=f(pold);
+    g=@(pa) f([pa, pnew(2)]);
+    gold=g(pold(1));
     gVal = g(pnew(1));
-    paNew = pnew(1) - ( (pnew(1) - paold) / (gVal - fold) )* gVal;
+    paNew = pnew(1) - ( (pnew(1) - pold(1)) / (gVal - gold) )* gVal;
     pold(1) = pnew(1);
     pnew(1) = paNew;
     
     
-    g=@(pb) f2(pa, p2);
-    fold=f(pbold);
-    fVal = f(pb);
-    pbNew = pb - ( (pb - pbold) / (fVal - fold) )* fVal;
-    pbold = pb;
-    pb = pbNew;
-        
-        
-        
-        
-        
+    g=@(pb) f([pnew(1), pb]);
+    gold=g(pold(2));
+    gVal = g(pnew(2));
+    pbNew = pnew(2) - ( (pnew(2) - pold(2)) / (gVal - gold) )* gVal;
+    pold(2) = pnew(2);
+    pnew(2) = pbNew;
+  
     end
 end
+toc
+
+%% problem 4
+
+p_4 = [2 2];
+
+tol = 1e-8;
+maxit = 100;
+
+tic
+for iter =1:maxit
+    fprintf('iter %d: p(1) = %f, p(2) = %f\n', iter, p_4(1), p_4(2));
+    faVal = f(p_4);
+    fbVal = f(fliplr(p_4));
+    
+    if abs(max(faVal,fbVal)) < tol
+        break
+    else
+    
+    p_4(1) = 1/(1 - demand(v, p_4));
+    
+    p_4(2) = 1/(1 - demand(fliplr(v), fliplr(p_4)));
+  
+    end
+end
+toc
+
+
+%%  problem 5
+% we are going to use broyden for this
+
+va = 2;
+vb = 0 : 0.2 :3;
+p_5 = ones(2, size(vb));
+
+for i = 1 : size(vb)
+    v 
+    p_5(:, i) = 
+end
+
 

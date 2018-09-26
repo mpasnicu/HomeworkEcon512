@@ -1,12 +1,10 @@
 %% problem 1
 % just define the values
 
-v_a = 2;
-v_b = 2;
-p_a = 1;
-p_b = 1;
+v = [2 2];
+p = [1 1];
 
-fprintf('Demand for A is %.2f and Demand for B is %.2f\n', demand(v_a, p_a, v_b, p_b), demand(v_b, p_b, v_a, p_a))
+fprintf('Demand for A is %.2f and Demand for B is %.2f\n', demand(v, p), demand(fliplr(v), fliplr(p)))
 
 
 
@@ -14,12 +12,50 @@ fprintf('Demand for A is %.2f and Demand for B is %.2f\n', demand(v_a, p_a, v_b,
 %% problem 2
 % keep v_a = v_b = 2
 
-p = [1 2];
-f = @(x) [x(1) - 1/( 1 - demand(v_a, x(1), v_b, x(2))); x(2) - 1/(1 - demand(v_b, x(2), v_a, x(1)))];
-iJac = inv(myJac(f, p));
+p = [1 5];
+f = @(x) [x(1) - 1/( 1 - demand(v, x)); x(2) - 1/(1 - demand(fliplr(v), fliplr(x)))];
 
-maxit = 100; 
-tol = 1e-10; 
+
 tic
-p_sol = broyden(maxit, tol, f, p, iJac);
+p_sol = broyden(f, p);
+toc
+
+
+
+%% problem 3
+
+
+pold = [1 1];
+pnew = [2 5];
+
+tol = 1e-8;
+maxit = 100;
+
+tic
+for iter =1:maxit
+    fprintf('iter %d: p(1) = %f, p(2) = %f\n', iter, pnew(1), pnew(2));
+    faVal = f(pnew);
+    fbVal = f(fliplr(pnew));
+    
+    if abs(max(faVal,fbVal)) < tol
+        break
+    else
+    
+    g=@(pa) f([pa, pnew(2)]);
+    gold=g(pold(1));
+    gVal = g(pnew(1));
+    paNew = pnew(1) - ( (pnew(1) - pold(1)) / (gVal - gold) )* gVal;
+    pold(1) = pnew(1);
+    pnew(1) = paNew;
+    
+    
+    g=@(pb) f([pnew(1), pb]);
+    gold=g(pold(2));
+    gVal = g(pnew(2));
+    pbNew = pnew(2) - ( (pnew(2) - pold(2)) / (gVal - gold) )* gVal;
+    pold(2) = pnew(2);
+    pnew(2) = pbNew;
+  
+    end
+end
 toc

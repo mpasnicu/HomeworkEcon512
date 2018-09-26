@@ -1,4 +1,7 @@
-function p_sol = broyden(maxit, tol, f, p, iJac)
+function p_sol = broyden(f, p)
+maxit = 100; 
+tol = 1e-10; 
+iJac = inv(myJac(f, p));
 
 fVal = f(p);
 for iter = 1:maxit
@@ -7,7 +10,7 @@ for iter = 1:maxit
         break
     end
     d = - (iJac * fVal);
-    p = p+d;
+    p = p+d';
     fOld = fVal;
     fVal = f(p);
     u = iJac*(fVal - fOld);

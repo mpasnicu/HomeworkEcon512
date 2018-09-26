@@ -1,6 +1,6 @@
-function d = demand(v_a, p_a, v_b, p_b)
+function d = demand(v, p)
 
 % just define the demand as a function
-d = exp(v_a - p_a)/( 1 + exp(v_a - p_a) + exp(v_b - p_b));
+d = exp(v(1) - p(1))/( 1 + exp(v(1) - p(1)) + exp(v(2) - p(2)));
 
 end

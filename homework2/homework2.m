@@ -1,3 +1,5 @@
+diary hw2_diary.out
+
 %% problem 1
 % just define the values
 
@@ -41,18 +43,19 @@ for iter =1:maxit
         break
     else
     
+    % updating pa
     g=@(pa) f([pa, pnew(2)]);
     gold=g(pold(1));
     gVal = g(pnew(1));
-    paNew = pnew(1) - ( (pnew(1) - pold(1)) / (gVal - gold) )* gVal;
+    paNew = pnew(1) - ((pnew(1) - pold(1)) / (gVal - gold) )* gVal;
     pold(1) = pnew(1);
     pnew(1) = paNew;
     
-    
+    % updating pb
     g=@(pb) f([pnew(1), pb]);
     gold=g(pold(2));
     gVal = g(pnew(2));
-    pbNew = pnew(2) - ( (pnew(2) - pold(2)) / (gVal - gold) )* gVal;
+    pbNew = pnew(2) - ((pnew(2) - pold(2)) / (gVal - gold) )* gVal;
     pold(2) = pnew(2);
     pnew(2) = pbNew;
   
@@ -77,8 +80,10 @@ for iter =1:maxit
         break
     else
     
+    % updating pa
     p_4(1) = 1/(1 - demand(v, p_4));
     
+    % updating pb
     p_4(2) = 1/(1 - demand(fliplr(v), fliplr(p_4)));
   
     end
@@ -102,3 +107,4 @@ end
 plot(vb,p_5(1,:),vb,p_5(2,:));
 xlabel('Valuation of good B'); ylabel('Equilibrium Prices');
 
+diary off

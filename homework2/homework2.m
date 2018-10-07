@@ -1,3 +1,4 @@
+
 diary hw2_diary.out
 
 %% problem 1
@@ -94,7 +95,7 @@ toc
 %%  problem 5
 % we are going to use broyden for this
 
-va = 2;
+va = 2; 
 vb = 0 : 0.2 :3;
 p_5 = ones(2, size(vb, 2));
 

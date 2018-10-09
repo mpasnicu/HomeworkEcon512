@@ -29,5 +29,10 @@ b2
 
 
 %% problem 3
+b3 = [1 0 0 0 0 0];
+f3 = @(b)y-exp(X*b');
 
+
+b3 = lsqnonlin(f3, b3, [], [], optimoptions('lsqnonlin','Display','final','TolFun',1e-16,'TolX',1e-16));
+b3
 

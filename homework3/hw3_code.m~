@@ -1,0 +1,9 @@
+M = load('hw3.mat');
+x = M.X;
+y = M.y;
+
+%% problem 1
+
+b1 = [1 0 0 0 0 0];
+f =@
+

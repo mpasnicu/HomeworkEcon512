@@ -30,9 +30,27 @@ b2
 
 %% problem 3
 b3 = [1 0 0 0 0 0];
-f3 = @(b)y-exp(X*b');
+f3 = @(b)y-exp(X * b');
 
 
 b3 = lsqnonlin(f3, b3, [], [], optimoptions('lsqnonlin','Display','final','TolFun',1e-16,'TolX',1e-16));
 b3
+
+
+
+%% problem 4
+b4 = [1 0 0 0 0 0];
+
+f4 = @(b)sum((y - exp(X * b')) .^ 2);
+
+for i = 1: maxit
+
+    [b4, fval, exit] = fminsearch(f4, b4, optimset('Display','final','TolFun',1e-16,'TolX',1e-16));
+    if (exit == 1)
+        break
+    end
+end
+toc
+
+b4
 

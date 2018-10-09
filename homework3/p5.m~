@@ -1,0 +1,24 @@
+[t , b] = hw3_code([1 0 0 0 0 0]);
+t
+b
+
+table(b') 
+
+range = linspace(0, 4);
+max = size(range, 2);
+T = zeros(4, jjmax);
+B = zeros(max, 4, 6);
+
+
+for j = 1 : size(b, 2)
+    for k = 1 : max
+        beta_zero = zeros(1, 6);
+        beta_zero(j) = k;
+        [t, b] = hw3_code(beta_zero);
+        T(:, k) = t;
+        B(k, :, :) = b;
+    end
+    plot(T(1, :), T(2, :), T(3, :), T(4, :));
+end
+
+

@@ -29,7 +29,7 @@ b2 = b;
 f2 = @(b) norm(log_lik(x, y, b));
 
 tic
-b2 = fminunc(f2, b2, optimset('Display','final'));
+b2 = fminunc(f, b2, optimset('Display','final'));
 t(2) = toc;
 b_sol(2, :) = b2;
 

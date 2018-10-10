@@ -1,5 +1,9 @@
+format short
+
 [t , b] = hw3_code([1 0 0 0 0 0]);
-tb = table(b');
+
+tb = table(squeeze(b(1, :))', squeeze(b(2, :))', squeeze(b(3, :))', squeeze(b(4, :))');
+tb.Properties.VariableNames = {'MLE' 'MLE_QN' 'NLS' 'NLS_NM'};
 
 range = linspace(0, 4, 10);
 max = size(range, 2);
@@ -18,7 +22,7 @@ for j = 1 : size(b, 2)
     
 end
 
-plot(range, squeeze(T(1, 1, :)), range, squeeze(T(2, 1, :)), range, squeeze(T(3, 1, :)), range, squeeze(T(4, 1, :)));
+plot(range, squeeze(T(1, 2, :)), range, squeeze(T(2, 2, :)), range, squeeze(T(3, 2, :)), range, squeeze(T(4, 2, :)));
 xlabel('Initial value');
 ylabel('Time'); 
 legend('MLE', 'MLE QN', 'NLS', 'NLS NM');

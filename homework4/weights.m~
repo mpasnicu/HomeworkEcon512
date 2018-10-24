@@ -1,0 +1,24 @@
+function [x, w]=weights(n, a, b)
+
+% [a, b] interval
+% n number of points
+% x points
+% w weights of the points
+
+for i= 1:n
+    if or(i == 1, i == n)
+        w(i)=1 / (3 * n);
+    elseif mod(i,2)==0
+            w(i)=4/(3*n);
+    elseif mod(i,2)~=0
+        w(i)=2/(3*n);
+    end
+end
+for j=1:n
+    if j==1
+        x(j)=a;
+    else
+        x(j)=x(j-1)+((b-a)/n);
+    end
+end
+end

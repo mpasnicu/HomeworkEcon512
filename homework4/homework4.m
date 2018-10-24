@@ -14,12 +14,17 @@ pi_1=4 * w' * test1;
 f = @(x, y)(double(x .^ 2 + y .^ 2 <= 1));
 
 % use function to get points
-[x_1, w_1] = weights(25000, 0, 1);
+[x_2, w_2] = weights(25000, 0, 1);
 f_val = zeros(25000, 25000);
 
-for i = 1 : length(x_1)
-    f_val(i, :) = f(repmat(x_1(i), 1, length(x_1)), x_1');
+for i = 1 : length(x_2)
+    f_val(i, :) = f(repmat(x_2(i), 1, length(x_2)), x_2');
 end
 
 
-pi_2 = 4 * w_1'* f_val * w_1;
+pi_2 = 4 * w_2'* f_val * w_2;
+
+%% Problem 3
+
+[x_3, w_3] = qnwequi(50000, 0,1, 'N'); 
+pi_3 = 4 * w_3' * (1 - x_3 .^ 2) .^ 0.5; 

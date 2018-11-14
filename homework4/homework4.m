@@ -16,6 +16,7 @@ f = @(x, y)(double(x .^ 2 + y .^ 2 <= 1));
 
 % use function to get points
 [x_2, w_2] = weights(25000, 0, 1);
+% there should be equivalent number of points to compare approaches
 f_val = zeros(25000, 25000);
 
 for i = 1 : length(x_2)

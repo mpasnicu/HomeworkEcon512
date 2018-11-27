@@ -1,3 +1,7 @@
+% loks smart, but I need to be able to run the program without any inital
+% parameter setup, main file should be just calling all other routines you
+% need in your program 
+
 function [t, b_sol] = hw3_code(b)
 
 t = zeros(1 ,4);

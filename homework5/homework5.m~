@@ -25,17 +25,8 @@ l1 = like(0, w, nodes, Y, X, Z);
 rng(100);
 nodes2.nx = randn(100, 1) + 0.1;
 nodes2.ny = 0;
-w2 = 1 / length(nodes2.nx);
-l2 = like(0, w2, nodes2, Y, X, Z);
-
-
-
-%% question 3 - Gaussian Quadrature
-
-func31 = @(x) gauss(x(1), x(2), x(3), Y, X, Z);
-x31 = [1,1,1];
-[arg31, fval31] = fminsearch(func31, x31);
-
+w2= 1 /length(nodes2.nx);
+l2=likelihood(0,w2,nodes2,Y,X,Z);
 
 
 

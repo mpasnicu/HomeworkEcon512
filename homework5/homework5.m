@@ -32,11 +32,22 @@ l2 = like(0, w2, nodes2, Y, X, Z);
 
 %% question 3 - Gaussian Quadrature
 
-func31 = @(x) gauss(x(1), x(2), x(3), Y, X, Z);
-x31 = [1,1,1];
+func31 = @(x) zero_gauss(x(1), x(2), x(3), Y, X, Z);
+x31 = [1, 1, 1];
 [arg31, fval31] = fminsearch(func31, x31);
 
 
 
+%% question 3 - Monte Carlo
 
+func32 = @(x) zero_mc(x(1), x(2), x(3), Y, X, Z);
+x31 = [1, 1, 1];
+e = 0;
+t = 1;
+while (e ~= 1) && (t < 10)
+    tic
+    [x31, fval32, e] = fminsearch(func32, x31);
+    t = t + 1;
+    toc
+end
 

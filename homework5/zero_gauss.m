@@ -1,4 +1,4 @@
-function l = gauss(gamma, beta, sigma, Y, X, Z)
+function l = zero_gauss(gamma, beta, sigma, Y, X, Z)
 
 optset('qnwnorm','usesqrtm',1);
 

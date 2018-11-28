@@ -61,7 +61,7 @@ end
 %% question 4
 
 f4 = @(x) nonzero_mc(x(1), x(2), x(3), x(4), x(5), Y, X, Z);
-x4 = [1, 1, 1, 1, 0.5];
+x4 = [1, 1, 1, 1, 1];
 
 [arg4, fval4, exit4] = fminsearch(f4, x4);
 

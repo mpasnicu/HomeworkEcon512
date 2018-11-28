@@ -22,7 +22,7 @@ s31 = length(nx);
 s32 = length(ny);
 
 
-parfor i = 1 : s1
+for i = 1 : s1
     t1 = ones(s31, s32, s2);
     
     for j = 1 : s2

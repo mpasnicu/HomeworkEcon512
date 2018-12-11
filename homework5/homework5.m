@@ -1,10 +1,11 @@
 addpath('/Users/mihai/Desktop/Second year/Empirical Methods/Lectures/CEtools');
 
 data = load('/Users/mihai/Desktop/Second year/Empirical Methods/homework5/hw5.mat');
-
-X = data.data.X';
-Y = data.data.Y';
-Z = data.data.Z';
+% do not use absolute path, it is different on every computer. I think I
+% told you that before multiple times.
+X = data.X';
+Y = data.Y';
+Z = data.Z';
 
 clear data;
 
@@ -38,6 +39,8 @@ f31 = @(x) zero_gauss(x(1), x(2), x(3), Y, X, Z);
 x31 = [1, 1, 1];
 
 [arg31, fval31] = fminsearch(f31, x31);
+% you were told to use fmincon, it allows to use only one function and
+% impose constraints to your liking.
 
 
 
@@ -64,4 +67,8 @@ f4 = @(x) nonzero_mc(x(1), x(2), x(3), x(4), x(5), Y, X, Z);
 x4 = [1, 1, 1, 1, 0.1];
 
 [arg4, fval4, exit4] = fminsearch(f4, x4);
+% again, this does not use fmincon, you need to read assignment more
+% carefully
+% it takes very long time, you need to profile the code so that to avoind
+% bottlenecks
 

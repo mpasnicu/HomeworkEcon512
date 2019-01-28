@@ -4,5 +4,5 @@ function u = utility(p,x)
 
 x_1 = x .* (x >= 0);
 out = p .* x_1 - 0.2 * x_1 .^ 1.5;
-u = out - 10000 * (x<0);
+u = out - 10000 * (x < 0);
 end

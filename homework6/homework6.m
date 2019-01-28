@@ -5,8 +5,6 @@
 
 %% Question 3 + 4
 
-%% Question 3,4
-
 % setting up parameters
 delta = 0.95;
 S = 1000; 
@@ -22,7 +20,7 @@ diff = 1;
 
 % actual vfi
 while (diff > 0.001)
-    Ev=v_init*pi';
+    Ev = v_init * pi';
     
     for j = 1 : S
         U = utility(P, stock(j) - S_1);
@@ -63,9 +61,9 @@ decision_sim = zeros(sims, 20);
 p_gen = zeros(sims, 20); 
 
 
-for i = 1: sims
+for i = 1 : sims
 
-    p_gen(i,1) = 11; 
+    p_gen(i, 1) = 11; 
     
     for j = 1 : 19
         draw = mnrnd(1, prob(p_gen(i, j), :));
@@ -118,7 +116,7 @@ diff_1 = 1;
 
 % actual vfi
 while diff_1 > 0.001
-    Ev = v_init_1* pi_1';
+    Ev = v_init_1 * pi_1';
     
     for i = 1 : S
         U = utility(P, stock(i) - S_1);
@@ -144,7 +142,7 @@ ylabel('Value');
 
 figure(5)
 plot(grid_1, policy_1(250, :), 'r-', grid_1, policy_1(500, :), 'k-.', grid_1, policy_1(750, :), 'b--');
-legend({'stock =25','stock = 50','stock = 75'},'Location','northwest');
+legend({'stock = 25','stock = 50','stock = 75'},'Location','northwest');
 title('Optimal Next-period Stock');
 xlabel('Price');
 ylabel('Optimal Stock Next Period');

@@ -1,5 +1,5 @@
 %% Question 2
-
+% all looks good, check plus
 [prob, grid] = tauchen(21, 0.5, 0.5, 0.1); 
 
 

@@ -13,7 +13,7 @@ maxerror = 10000;
 % for clarity
 
 P_0 = repmat(c, 1, L);                     
-V_0 = ones(L, L);
+V_0 = zeros(L, L);
 
 % follow the steps in the homework
 
@@ -72,14 +72,13 @@ state_0 = kron(t_0, t_0);
 state_1 = kron(t_1, t_0);
 state_2 = kron(t_0, t_1);
     
-% transition matrix
+    
 pi = D_0_state .* state_0 + D_1_state .* state_1 + D_2_state .* state_2;
 pi = pi ./ repmat(sum(pi, 2), 1, L * L);       
 
 start = [1 zeros(1,899)];
    
 
-% get the distribution of states
 state_10 = reshape(start * pi ^ 10, L, L);    
 state_20 = reshape(start * pi ^ 20, L, L);    
 state_30 = reshape(start * pi ^ 30, L, L);    
@@ -114,22 +113,19 @@ zlabel('prob. mass');
 %% question 3
 
 maxerror = 1000;
+smaller_error = 10e-12;
 
-while maxerror > 10e-10
-    
-    temp = start * pi;
-    maxerror = norm(temp - start) / norm(start);
-    start = temp;
-end
-
-stat_dis = reshape(temp, L, L);
+         while maxerror > 10e-16
+               update=start*pi;
+               diff=norm(update-start)/norm(start);
+               start=update;
+         end
+     
+   stationary = reshape(update,L,L);
    
-figure(6)
-    
-surf(1 : 1 : L, 1 : 1 : L, stat_dis);
-title('stationary dist. of state');
-xlabel('w1');
-ylabel('w2');
-zlabel('prob. mass');
-    
-
+    figure(6)
+    surf(1:1:L,1:1:L,stationary);
+    xlabel('w1');
+    ylabel('w2');
+    zlabel('probability mass');
+    title('stationary dist. of state');

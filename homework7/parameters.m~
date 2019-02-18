@@ -1,0 +1,28 @@
+% just a file with the parameters
+
+global L c beta t_0 t_1 delta lambda error miu; 
+
+
+L = 30;
+ro = 0.85;
+k = 10;
+l = 15;
+v = 10;
+delta = 0.03;
+beta = 1 / 1.05;
+error = 10e-5;
+lambda = 1;
+miu = log(ro) / log(2);
+maxit
+
+% cost function
+c = zeros(L, 1);
+c(1: l - 1) = k .* (1:1:l - 1) .^ miu;
+c(l: L) = k * l ^ miu;
+
+
+
+% transition probability for q = 0, 1 respectively
+
+t_0 = diag([1 (1 - delta) .^ (2 : 1 : L)], 0) + diag(1 - (1 - delta) .^ (2 : 1 : L), - 1) ;
+t_1 = diag([1 - (1 - delta) .^ (1 : 1 : L - 1) 1], 0) + diag((1 - delta) .^ (1 : 1 : L - 1), 1);

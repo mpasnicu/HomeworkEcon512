@@ -1,6 +1,6 @@
 function [D_0, D_1, D_2] = get_D(P_1, P_2)
 
-%simple function that computes D
+% simple function that computes D
 
 global L v;
 

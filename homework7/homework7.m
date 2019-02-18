@@ -1,8 +1,5 @@
 %% question 1
 
-
-
-
 run parameters.m
 global L c beta t_0 t_1 lambda maxiter error; 
 
@@ -10,27 +7,27 @@ iter = 0;
 maxerror = 10000;
 
 % guesses, would make sense to call them old_P and old_V, but keep them 0
-% for clarity
+% for clarity, as being the initial guesses
 
 P_0 = repmat(c, 1, L);                     
 V_0 = ones(L, L);
 
-% follow the steps in the homework
+% follow the steps in the homework file
 
 tic
 while ((maxerror > error) && (iter < maxiter))
    
+    % computation of new values
     f = @(x) func_P(V_0, x);
     new_P = fsolve(f, P_0);
+    
     [D_0, D_1, D_2] = get_D(new_P, P_0');
     [W_0, W_1, W_2] = get_W(V_0);
-    
     new_V = D_1 .* (new_P - repmat(c, 1, L)) + beta .* (D_0 .* W_0 + D_1 .* W_1 + D_2 .* W_2);
       
-
+    
+    % iteration step
     maxerror = max(max(max(abs((new_V - V_0) ./ (1 + new_V)))),  max(max(abs((new_P - P_0) ./ (1 + new_V))))); 
-           
-
     V_0 = (1 - lambda) * V_0 + lambda * new_V;
     P_0 = (1 - lambda) * P_0 + lambda * new_P;
            

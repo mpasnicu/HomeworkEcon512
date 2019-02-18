@@ -17,8 +17,8 @@ error = 10e-5;
 
 % cost function
 c = zeros(L, 1);
-c(1: l - 1) = k .* (1 : 1 : l - 1) .^ eta;
-c(l: L) = k * l ^ eta;
+c(1 : l) = k * [1 : l]' .^ eta;
+c(l + 1: L)= k * ones(L - l, 1) * l .^ eta;
 
 
 

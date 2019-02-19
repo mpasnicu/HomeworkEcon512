@@ -1,5 +1,5 @@
 %% question 1
-
+% all is good
 run parameters.m
 global L c beta t_0 t_1 lambda maxiter error; 
 
